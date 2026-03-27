@@ -1,536 +1,919 @@
-﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RedBird Design System</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --rb-primary: #ec202b;
-      --rb-primary-hover: #be123c;
-      --rb-text: #1d293d;
-      --rb-text-secondary: #62748e;
-      --rb-text-muted: #90a1b9;
-      --rb-surface: #ffffff;
-      --rb-surface-soft: #f8fafc;
-      --rb-surface-danger: #fff8f8;
-      --rb-border: #e8edf3;
-      --rb-border-strong: #cbd5e1;
-      --rb-success: #00bc7d;
-      --rb-success-bg: #ecfdf5;
-      --rb-warning: #ff8904;
-      --rb-warning-bg: #fff7ed;
-      --rb-danger: #ec202b;
-      --rb-danger-bg: #fff5f5;
-      --rb-info: #00bcff;
-      --rb-info-bg: #effbff;
-      --rb-accent: #6f68f5;
-      --rb-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.04);
-      --rb-shadow-button: 0 1px 3px rgba(236, 32, 43, 0.05), -1px 5px 5px rgba(236, 32, 43, 0.04), -2px 11px 7px rgba(236, 32, 43, 0.03), -4px 20px 8px rgba(236, 32, 43, 0.01);
-      --rb-radius-sm: 8px;
-      --rb-radius-md: 16px;
-      --rb-radius-lg: 24px;
-      --rb-space-1: 4px;
-      --rb-space-2: 8px;
-      --rb-space-3: 12px;
-      --rb-space-4: 16px;
-      --rb-space-5: 24px;
-      --rb-space-6: 32px;
-      --rb-field-height: 40px;
-      --rb-button-height: 32px;
-      --rb-button-height-lg: 36px;
-      --rb-font-heading: "Libre Franklin", sans-serif;
-      --rb-font-body: "Inter", sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trade Harmonizer — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:       #0D0F12;
+  --ink-2:     #2A2D35;
+  --ink-3:     #4B5060;
+  --ink-4:     #8B909E;
+  --ink-5:     #C2C5CE;
+  --line:      #E8E9EC;
+  --line-soft: #F2F3F5;
+  --surface:   #F8F8FA;
+  --white:     #FFFFFF;
+  --gold:      #C9A84C;
+  --gold-pale: #F5EDD6;
+  --gold-deep: #9C7A2A;
+  --teal:      #1A7A6E;
+  --teal-pale: #D4F0EC;
+  --teal-deep: #0F5248;
+  --rose:      #C84B4B;
+  --rose-pale: #FAE0E0;
+  --rose-deep: #8B2E2E;
+  --amber:     #C97B1A;
+  --amber-pale:#FDF0D5;
+  --blue:      #2A5FC8;
+  --blue-pale: #D8E4FA;
+  --serif:     'DM Serif Display', Georgia, serif;
+  --sans:      'DM Sans', system-ui, sans-serif;
+  --mono:      'DM Mono', 'Courier New', monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;}
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #f4f7fb;
-      color: var(--rb-text);
-      font-family: var(--rb-font-body);
-    }
-    a { color: inherit; text-decoration: none; }
-    .page {
-      width: min(1160px, calc(100% - 28px));
-      margin: 28px auto 60px;
-    }
-    .intro {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: flex-start;
-      margin-bottom: 44px;
-    }
-    .intro-left {
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-    }
-    .mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-hover));
-      box-shadow: var(--rb-shadow-button);
-      flex: 0 0 44px;
-    }
-    .eyebrow {
-      color: #6c7c92;
-      font: 600 12px/1.3 var(--rb-font-body);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    h1,h2,h3,h4,h5,p,pre { margin: 0; }
-    h1 {
-      margin-top: 6px;
-      font: 700 36px/1.05 var(--rb-font-heading);
-      letter-spacing: -0.04em;
-    }
-    .intro p {
-      margin-top: 10px;
-      max-width: 620px;
-      color: var(--rb-text-secondary);
-      font: 400 14px/1.65 var(--rb-font-body);
-    }
-    .version {
-      padding: 8px 12px;
-      border: 1px solid var(--rb-border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      color: var(--rb-text-secondary);
-      font: 600 12px/1 var(--rb-font-body);
-      white-space: nowrap;
-    }
-    .section {
-      margin-bottom: 56px;
-    }
-    .section-label {
-      color: var(--rb-text-secondary);
-      font: 600 12px/1.3 var(--rb-font-body);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-    .section-head {
-      margin-bottom: 18px;
-    }
-    .section-head h2 {
-      font: 700 30px/1.05 var(--rb-font-heading);
-      letter-spacing: -0.03em;
-    }
-    .section-rule {
-      width: 40px;
-      height: 3px;
-      margin-top: 10px;
-      border-radius: 999px;
-      background: var(--rb-primary);
-    }
-    .board,
-    .card,
-    .pattern {
-      border: 1px solid var(--rb-border);
-      border-radius: 16px;
-      background: var(--rb-surface);
-      box-shadow: var(--rb-shadow);
-    }
-    .grid-3,
-    .grid-2,
-    .grid-4 {
-      display: grid;
-      gap: 18px;
-    }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .card,
-    .pattern {
-      padding: 22px;
-    }
-    .card h3,
-    .pattern h3 {
-      margin-bottom: 16px;
-      font: 600 17px/1.2 var(--rb-font-heading);
-    }
-    .stack { display: grid; gap: 12px; }
-    .swatch-row,
-    .token-row,
-    .type-block,
-    .toast,
-    .field-block {
-      display: flex;
-      gap: 12px;
-    }
-    .swatch {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      border-radius: 10px;
-      border: 1px solid var(--rb-border);
-    }
-    .meta strong,
-    .token-row strong {
-      display: block;
-      font: 600 13px/1.4 var(--rb-font-body);
-    }
-    .meta span,
-    .token-row span {
-      color: var(--rb-text-secondary);
-      font: 400 12px/1.55 var(--rb-font-body);
-    }
-    .type-group small {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--rb-text-muted);
-      font: 500 11px/1.3 var(--rb-font-body);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .display-xl { font: 700 30px/1 var(--rb-font-heading); }
-    .heading-md { font: 600 16px/24px var(--rb-font-heading); }
-    .label-sm { font: 500 12px/18px var(--rb-font-heading); color: var(--rb-text-secondary); }
-    .body-md { font: 400 13px/18px var(--rb-font-body); }
-    .body-sm { font: 400 12px/18px var(--rb-font-body); color: var(--rb-text-muted); }
-    .demo-row,
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .btn {
-      height: var(--rb-button-height);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 0 16px;
-      border: 1px solid transparent;
-      border-radius: var(--rb-radius-sm);
-      background: var(--rb-primary);
-      color: #fff;
-      font: 600 12px/18px var(--rb-font-heading);
-    }
-    .btn.large { height: var(--rb-button-height-lg); font: 400 14px/20px var(--rb-font-heading); }
-    .btn.hover { background: var(--rb-primary-hover); box-shadow: var(--rb-shadow-button); }
-    .btn.secondary { background: #fff; color: var(--rb-text-secondary); border-color: var(--rb-border-strong); }
-    .btn.tonal { background: var(--rb-surface-soft); color: var(--rb-text); border-color: var(--rb-border); }
-    .field-shell {
-      display: grid;
-      gap: 6px;
-    }
-    .field-shell label {
-      color: var(--rb-text-secondary);
-      font: 500 12px/18px var(--rb-font-heading);
-    }
-    .field {
-      min-height: var(--rb-field-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 0 13px;
-      border: 1px solid var(--rb-border-strong);
-      border-radius: var(--rb-radius-sm);
-      background: var(--rb-surface-soft);
-      color: var(--rb-text);
-      font: 400 13px/18px var(--rb-font-body);
-    }
-    .field.focus { background: #fff; border-color: #7ab7ff; box-shadow: 0 0 0 3px rgba(0, 141, 213, 0.08); }
-    .field.error { background: var(--rb-surface-danger); border-color: rgba(236,32,43,0.45); color: var(--rb-danger); }
-    .field.success { border-color: rgba(0,188,125,0.5); background: #f9fffc; }
-    .helper { color: var(--rb-text-muted); font: 400 12px/18px var(--rb-font-body); }
-    .helper.error { color: var(--rb-danger); }
-    .helper.success { color: var(--rb-success); }
-    .status,
-    .badge,
-    .tab {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--rb-border);
-      background: var(--rb-surface-soft);
-      color: var(--rb-text-secondary);
-      font: 600 12px/1 var(--rb-font-heading);
-    }
-    .status::before,
-    .badge::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-    .status.success,.badge.success { color: var(--rb-success); background: var(--rb-success-bg); border-color: rgba(0,188,125,0.2); }
-    .status.warning,.badge.warning { color: var(--rb-warning); background: var(--rb-warning-bg); border-color: rgba(255,137,4,0.2); }
-    .status.danger,.badge.danger { color: var(--rb-danger); background: var(--rb-danger-bg); border-color: rgba(236,32,43,0.18); }
-    .status.info,.badge.info { color: var(--rb-info); background: var(--rb-info-bg); border-color: rgba(0,188,255,0.18); }
-    .tab { background: #fff; }
-    .tab.active { color: var(--rb-primary); border-color: rgba(236,32,43,0.24); background: rgba(236,32,43,0.06); }
-    .metrics { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-    .metric {
-      padding: 16px;
-      border: 1px solid var(--rb-border);
-      border-radius: 12px;
-      background: #fff;
-    }
-    .metric h4 { margin-bottom: 8px; color: var(--rb-text-secondary); font: 600 13px/18px var(--rb-font-heading); }
-    .metric strong { display: block; font: 700 28px/1 var(--rb-font-heading); }
-    .metric span { display: block; margin-top: 6px; color: var(--rb-text-muted); font: 400 12px/18px var(--rb-font-body); }
-    .toast-stack { display: grid; gap: 12px; }
-    .toast {
-      align-items: start;
-      grid-template-columns: auto 1fr auto;
-      border: 1px solid var(--rb-border);
-      border-radius: 14px;
-      padding: 14px;
-      background: #fff;
-      box-shadow: var(--rb-shadow);
-    }
-    .toast-dot { width: 12px; height: 12px; margin-top: 3px; border-radius: 50%; }
-    .toast.success .toast-dot { background: var(--rb-success); }
-    .toast.warning .toast-dot { background: var(--rb-warning); }
-    .toast.error .toast-dot { background: var(--rb-danger); }
-    .toast strong { display: block; margin-bottom: 4px; font: 600 13px/1.3 var(--rb-font-heading); }
-    .toast p { color: var(--rb-text-secondary); font: 400 12px/1.55 var(--rb-font-body); }
-    .toast .action { color: var(--rb-primary); font: 600 12px/1 var(--rb-font-heading); }
-    .table {
-      border: 1px solid var(--rb-border);
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fff;
-    }
-    .table-head,
-    .table-row {
-      display: grid;
-      grid-template-columns: 1.2fr .9fr .8fr .8fr;
-      gap: 12px;
-      padding: 12px 14px;
-      align-items: center;
-    }
-    .table-head {
-      background: var(--rb-surface-soft);
-      color: var(--rb-text-muted);
-      font: 600 10px/1.2 var(--rb-font-heading);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .table-row {
-      border-top: 1px solid var(--rb-border);
-      font: 500 12px/1.5 var(--rb-font-body);
-    }
-    .pattern {
-      display: grid;
-      gap: 14px;
-    }
-    .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
-    .role-table {
-      display: grid;
-      gap: 8px;
-    }
-    .role-head,
-    .role-row {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr .6fr;
-      gap: 10px;
-      padding: 10px 12px;
-      align-items: center;
-      border-radius: 10px;
-    }
-    .role-head {
-      background: var(--rb-surface-soft);
-      color: var(--rb-text-muted);
-      font: 600 10px/1.2 var(--rb-font-heading);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .role-row {
-      border: 1px solid var(--rb-border);
-      background: #fbfcfe;
-      font: 500 12px/1.4 var(--rb-font-body);
-    }
-    .bars { display: flex; align-items: end; gap: 10px; height: 150px; }
-    .bar-col { flex: 1; display: grid; gap: 8px; justify-items: center; }
-    .bar-stack { width: 44px; height: 116px; display: flex; align-items: end; gap: 4px; }
-    .bar { width: 50%; border-radius: 8px 8px 4px 4px; }
-    .bar.coverage { background: rgba(0,188,125,0.42); }
-    .bar.deficit { background: rgba(236,32,43,0.28); }
-    .bar-col span { color: var(--rb-text-muted); font: 500 12px/1.3 var(--rb-font-body); }
-    .empty {
-      padding: 24px;
-      border: 1px solid var(--rb-border);
-      border-radius: 14px;
-      background: linear-gradient(180deg, #fff, #fbfcfe);
-      text-align: center;
-    }
-    .empty-orb {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 14px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(236,32,43,0.12), rgba(111,104,245,0.1));
-      border: 1px solid rgba(236,32,43,0.08);
-    }
-    .code {
-      padding: 18px;
-      border: 1px solid var(--rb-border);
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: var(--rb-shadow);
-    }
-    pre {
-      overflow: auto;
-      padding: 16px;
-      border-radius: 12px;
-      background: #111827;
-      color: #d9e7fb;
-      font: 400 12px/1.7 Consolas, monospace;
-    }
-    @media (max-width: 980px) {
-      .intro,.grid-4,.grid-3,.grid-2,.form-grid,.metrics { grid-template-columns: 1fr; display: grid; }
-      .intro { gap: 16px; }
-    }
-  </style>
+/* ── PAGE SHELL ─────────────────────────────────────────────────── */
+.shell{display:flex;min-height:100vh;}
+
+/* ── STICKY LEFT NAV ─────────────────────────────────────────────── */
+.sidenav{
+  width:200px;flex-shrink:0;
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  border-right:1px solid var(--line);
+  padding:36px 0 40px;
+  display:flex;flex-direction:column;
+}
+.sidenav::-webkit-scrollbar{width:0;}
+.sn-brand{padding:0 24px 28px;border-bottom:1px solid var(--line);margin-bottom:20px;}
+.sn-mark{width:30px;height:30px;background:var(--ink);border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.sn-mark span{font-family:var(--serif);font-size:14px;color:var(--gold);}
+.sn-name{font-size:12px;font-weight:500;color:var(--ink);letter-spacing:0.04em;}
+.sn-ver{font-size:11px;color:var(--ink-4);margin-top:2px;}
+.sn-group{padding:0 14px;margin-bottom:2px;}
+.sn-label{font-size:10px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink-5);padding:12px 10px 5px;}
+.sn-link{display:block;padding:6px 10px;border-radius:4px;font-size:12px;color:var(--ink-4);text-decoration:none;cursor:pointer;transition:all .1s;border:none;background:none;width:100%;text-align:left;}
+.sn-link:hover{background:var(--line-soft);color:var(--ink);}
+.sn-link.lit{background:var(--ink);color:#fff;}
+
+/* ── CANVAS ──────────────────────────────────────────────────────── */
+.canvas{flex:1;min-width:0;padding:80px 88px 160px;}
+
+/* ── COVER ───────────────────────────────────────────────────────── */
+.cover{
+  background:var(--ink);border-radius:16px;
+  padding:52px 60px;margin-bottom:80px;
+  position:relative;overflow:hidden;
+}
+.cover::after{
+  content:'TH';font-family:var(--serif);
+  font-size:260px;color:rgba(255,255,255,.025);
+  position:absolute;right:-20px;top:-40px;line-height:1;
+  pointer-events:none;letter-spacing:-8px;
+}
+.cover-ey{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.cover-h{font-family:var(--serif);font-size:44px;color:#fff;line-height:1.1;margin-bottom:12px;}
+.cover-p{font-size:14px;color:rgba(255,255,255,.45);max-width:480px;line-height:1.75;margin-bottom:36px;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px;}
+.cover-pill{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:11px;padding:4px 12px;border-radius:100px;}
+.cover-meta{display:flex;gap:36px;border-top:1px solid rgba(255,255,255,.08);padding-top:28px;}
+.cm-label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.28);margin-bottom:4px;}
+.cm-val{font-size:13px;color:rgba(255,255,255,.65);font-family:var(--mono);}
+
+/* ── SECTION ─────────────────────────────────────────────────────── */
+.sec{margin-bottom:96px;}
+.sec-ey{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+.sec-h{font-family:var(--serif);font-size:36px;color:var(--ink);line-height:1.15;margin-bottom:10px;}
+.sec-p{font-size:14px;color:var(--ink-3);max-width:540px;line-height:1.75;margin-bottom:48px;}
+
+/* ── TOKEN ROW ───────────────────────────────────────────────────── */
+.tok{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+.tok-name{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4);white-space:nowrap;}
+.tok-rule{flex:1;height:1px;background:var(--line);}
+
+/* ── SUBSECTION separator ────────────────────────────────────────── */
+.sub-rule{border:none;border-top:1px solid var(--line-soft);margin:40px 0;}
+
+/* ── COLOR ───────────────────────────────────────────────────────── */
+.swatch-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px;}
+.sw{width:92px;}
+.sw-chip{height:60px;border-radius:10px;border:1px solid rgba(0,0,0,.06);margin-bottom:8px;}
+.sw-name{font-size:11px;font-weight:500;color:var(--ink-2);line-height:1.3;}
+.sw-hex{font-size:10px;color:var(--ink-4);font-family:var(--mono);}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────────────── */
+.type-tbl{width:100%;}
+.tr{display:flex;align-items:baseline;gap:24px;padding:18px 0;border-bottom:1px solid var(--line-soft);}
+.tr:last-child{border-bottom:none;}
+.tr-meta{width:200px;flex-shrink:0;}
+.tr-label{font-size:11px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.07em;}
+.tr-spec{font-size:10px;color:var(--ink-5);font-family:var(--mono);margin-top:3px;}
+.tr-sample{color:var(--ink);flex:1;}
+
+/* ── SPACING ─────────────────────────────────────────────────────── */
+.sp-grid{display:flex;flex-direction:column;}
+.sp-row{display:flex;align-items:center;gap:20px;padding:12px 0;border-bottom:1px solid var(--line-soft);}
+.sp-row:last-child{border-bottom:none;}
+.sp-tok{width:72px;font-size:11px;color:var(--ink-4);font-family:var(--mono);}
+.sp-px{width:48px;font-size:11px;color:var(--ink-5);font-family:var(--mono);}
+.sp-vis{flex:1;display:flex;align-items:center;gap:10px;}
+.sp-bar{height:3px;background:var(--ink);border-radius:2px;}
+.sp-desc{font-size:11px;color:var(--ink-5);}
+
+/* ── RADIUS ──────────────────────────────────────────────────────── */
+.radius-row{display:flex;flex-wrap:wrap;gap:28px;}
+.rad-item{display:flex;flex-direction:column;gap:10px;}
+.rad-box{width:56px;height:56px;background:var(--ink);}
+.rad-name{font-size:11px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.07em;}
+.rad-val{font-size:10px;color:var(--ink-5);font-family:var(--mono);}
+
+/* ── GRID ────────────────────────────────────────────────────────── */
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-bottom:20px;}
+.gcol{height:28px;background:var(--gold-pale);border:1px solid var(--gold);border-radius:2px;}
+.gspan-row{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-bottom:8px;}
+.gblock{height:26px;background:var(--line-soft);border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-5);font-family:var(--mono);}
+
+/* ── ICONS ───────────────────────────────────────────────────────── */
+.icon-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.ic{width:64px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;border-radius:6px;border:1px solid var(--line);}
+.ic svg{width:18px;height:18px;color:var(--ink-2);}
+.ic-lbl{font-size:9px;color:var(--ink-5);font-family:var(--mono);text-align:center;}
+
+/* ── BUTTONS ─────────────────────────────────────────────────────── */
+.btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:0 18px;height:38px;font-family:var(--sans);font-size:13px;font-weight:500;
+  border-radius:5px;border:1px solid transparent;cursor:pointer;
+  text-decoration:none;transition:all .12s;white-space:nowrap;letter-spacing:.01em;
+}
+.btn-sm{height:30px;padding:0 12px;font-size:12px;border-radius:4px;}
+.btn-lg{height:46px;padding:0 24px;font-size:14px;}
+.btn-icon{width:38px;padding:0;}
+.btn-icon.btn-sm{width:30px;}
+.b-primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+.b-primary:hover{background:var(--ink-2);}
+.b-gold{background:var(--gold);color:#fff;border-color:var(--gold);}
+.b-gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);}
+.b-outline{background:transparent;color:var(--ink);border-color:var(--line);}
+.b-outline:hover{border-color:var(--ink-4);}
+.b-ghost{background:transparent;color:var(--ink-3);border-color:transparent;}
+.b-ghost:hover{background:var(--line-soft);color:var(--ink);}
+.b-danger{background:var(--rose);color:#fff;border-color:var(--rose);}
+.b-danger:hover{background:var(--rose-deep);}
+.b-disabled{background:var(--line-soft);color:var(--ink-5);border-color:var(--line);cursor:not-allowed;}
+
+/* ── FORMS ───────────────────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fl{font-size:12px;font-weight:500;color:var(--ink-2);}
+.fh{font-size:11px;color:var(--ink-4);}
+.fe{font-size:11px;color:var(--rose);}
+.fi{
+  height:38px;padding:0 12px;border:1px solid var(--line);border-radius:5px;
+  background:var(--white);color:var(--ink);font-family:var(--sans);font-size:13px;
+  outline:none;transition:border-color .12s,box-shadow .12s;width:100%;
+}
+.fi::placeholder{color:var(--ink-5);}
+.fi:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(13,15,18,.07);}
+.fi.f-err{border-color:var(--rose);box-shadow:0 0 0 3px rgba(200,75,75,.08);}
+.fi.f-ok{border-color:var(--teal);}
+.fi:disabled{background:var(--line-soft);color:var(--ink-5);cursor:not-allowed;}
+.fsel{
+  height:38px;padding:0 36px 0 12px;border:1px solid var(--line);border-radius:5px;
+  background:var(--white) url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238B909E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color:var(--ink);font-family:var(--sans);font-size:13px;
+  outline:none;appearance:none;cursor:pointer;width:100%;
+}
+.fta{
+  padding:10px 12px;border:1px solid var(--line);border-radius:5px;
+  background:var(--white);color:var(--ink);font-family:var(--sans);font-size:13px;
+  outline:none;resize:vertical;min-height:80px;width:100%;
+  transition:border-color .12s;
+}
+.fta:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(13,15,18,.07);}
+.cb-row{display:flex;align-items:center;gap:9px;cursor:pointer;margin-bottom:12px;}
+.cb-box{width:16px;height:16px;flex-shrink:0;border:1.5px solid var(--line);border-radius:3px;background:var(--white);display:flex;align-items:center;justify-content:center;transition:all .1s;}
+.cb-box.on{background:var(--ink);border-color:var(--ink);}
+.cb-box.on::after{content:'';width:8px;height:5px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(0,-1px);display:block;}
+.cb-lbl{font-size:13px;color:var(--ink-2);}
+.tog-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.tog{width:36px;height:20px;border-radius:10px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.tog.on{background:var(--ink);}
+.tog::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.15);}
+.tog.on::after{transform:translateX(16px);}
+.tog-lbl{font-size:13px;color:var(--ink-2);}
+
+/* ── BADGES ──────────────────────────────────────────────────────── */
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.bdg{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:500;letter-spacing:.02em;white-space:nowrap;}
+.bdg-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.7;}
+.b-default{background:var(--line-soft);color:var(--ink-3);}
+.b-active{background:var(--teal-pale);color:var(--teal-deep);}
+.b-pending{background:var(--amber-pale);color:var(--amber);}
+.b-error{background:var(--rose-pale);color:var(--rose-deep);}
+.b-gold-bdg{background:var(--gold-pale);color:var(--gold-deep);}
+.b-info{background:var(--blue-pale);color:var(--blue);}
+.b-outline-bdg{background:transparent;border:1px solid var(--line);color:var(--ink-3);}
+.b-solid{background:var(--ink);color:#fff;}
+.tag{display:inline-flex;align-items:center;padding:4px 10px;border-radius:3px;background:var(--line-soft);border:1px solid var(--line);font-size:11px;color:var(--ink-3);font-family:var(--mono);}
+
+/* ── ALERTS ──────────────────────────────────────────────────────── */
+.alert{display:flex;gap:12px;padding:14px 16px;border-radius:10px;border:1px solid;margin-bottom:10px;max-width:600px;}
+.al-icon{width:16px;height:16px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-top:1px;}
+.al-body{flex:1;}
+.al-title{font-size:13px;font-weight:500;margin-bottom:2px;}
+.al-msg{font-size:12px;line-height:1.5;}
+.al-close{font-size:12px;color:var(--ink-4);cursor:pointer;background:none;border:none;line-height:1;}
+.al-success{background:var(--teal-pale);border-color:#9EDBCF;}
+.al-success .al-icon{background:var(--teal);color:#fff;}
+.al-success .al-title,.al-success .al-msg{color:var(--teal-deep);}
+.al-error{background:var(--rose-pale);border-color:#F0BABA;}
+.al-error .al-icon{background:var(--rose);color:#fff;}
+.al-error .al-title,.al-error .al-msg{color:var(--rose-deep);}
+.al-warning{background:var(--amber-pale);border-color:#F0CEAA;}
+.al-warning .al-icon{background:var(--amber);color:#fff;}
+.al-warning .al-title,.al-warning .al-msg{color:#7A4A0D;}
+.al-info{background:var(--blue-pale);border-color:#B0C8F4;}
+.al-info .al-icon{background:var(--blue);color:#fff;}
+.al-info .al-title,.al-info .al-msg{color:#1A3B8A;}
+.al-gold{background:var(--gold-pale);border-color:#E5CFA0;}
+.al-gold .al-icon{background:var(--gold);color:#fff;}
+.al-gold .al-title,.al-gold .al-msg{color:var(--gold-deep);}
+.toast{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--ink);border-radius:9px;max-width:340px;margin-bottom:8px;border-left:3px solid;}
+.t-success{border-color:var(--teal);}
+.t-error{border-color:var(--rose);}
+.t-warning{border-color:var(--gold);}
+.t-info{border-color:var(--blue);}
+.t-text{flex:1;}
+.t-label{font-size:10px;font-weight:500;opacity:.45;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;color:#fff;}
+.t-msg{font-size:12px;opacity:.75;color:#fff;}
+
+/* ── CARDS ───────────────────────────────────────────────────────── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:32px;}
+.stat-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px 22px;}
+.sc-label{font-size:11px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.sc-val{font-family:var(--serif);font-size:28px;color:var(--ink);line-height:1;margin-bottom:6px;}
+.sc-delta{font-size:11px;font-weight:500;}
+.d-up{color:var(--teal);}
+.d-dn{color:var(--rose);}
+.content-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ccard{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px 22px;}
+.cc-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.cc-sub{font-size:12px;color:var(--ink-4);margin-bottom:18px;}
+.cc-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-soft);}
+.cc-row:last-child{border-bottom:none;padding-bottom:0;}
+.cc-rtitle{font-size:13px;font-weight:500;color:var(--ink);}
+.cc-rsub{font-size:11px;color:var(--ink-4);}
+
+/* ── TABLE ───────────────────────────────────────────────────────── */
+.tbl-wrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead{background:var(--surface);}
+th{text-align:left;padding:11px 16px;font-size:11px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:13px 16px;font-size:13px;color:var(--ink-2);border-bottom:1px solid var(--line-soft);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--surface);}
+.td-p{color:var(--ink);font-weight:500;}
+.td-m{font-family:var(--mono);font-size:12px;color:var(--ink-3);}
+.td-a{color:var(--gold-deep);font-weight:500;font-size:12px;cursor:pointer;}
+
+/* ── NAVIGATION ──────────────────────────────────────────────────── */
+.nav-demo{background:var(--ink);border-radius:14px;overflow:hidden;margin-bottom:32px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:54px;border-bottom:1px solid rgba(255,255,255,.07);}
+.tb-brand{display:flex;align-items:center;gap:10px;}
+.tb-logo{width:26px;height:26px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:12px;color:var(--ink);}
+.tb-name{font-size:14px;font-weight:500;color:#fff;}
+.tb-nav{display:flex;align-items:center;gap:2px;}
+.tb-link{padding:6px 12px;border-radius:4px;font-size:13px;color:rgba(255,255,255,.45);cursor:pointer;transition:all .12s;}
+.tb-link.on{background:rgba(255,255,255,.08);color:#fff;}
+.tb-link:hover{color:#fff;}
+.tb-right{display:flex;align-items:center;gap:10px;}
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:var(--gold-deep);}
+
+.sb-demo{display:flex;height:260px;}
+.sb-inner{width:190px;background:var(--surface);border-right:1px solid var(--line);padding:14px 10px;flex-shrink:0;}
+.sb-sect{font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-5);padding:10px 10px 5px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;font-size:13px;color:var(--ink-3);cursor:pointer;margin-bottom:1px;transition:all .1s;}
+.sb-item:hover{background:var(--line);color:var(--ink);}
+.sb-item.on{background:var(--ink);color:#fff;}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5;flex-shrink:0;}
+.sb-item.on .sb-dot{opacity:1;background:var(--gold);}
+.sb-content{flex:1;background:var(--white);padding:20px 24px;}
+.sb-ct{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.sb-cs{font-size:12px;color:var(--ink-4);}
+
+/* ── MODAL ───────────────────────────────────────────────────────── */
+.modal-wrap{background:rgba(13,15,18,.4);border-radius:14px;padding:40px 24px;display:flex;align-items:center;justify-content:center;min-height:360px;}
+.modal{background:var(--white);border-radius:14px;border:1px solid var(--line);width:100%;max-width:420px;overflow:hidden;}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--surface);}
+.modal-title{font-size:15px;font-weight:500;color:var(--ink);}
+.modal-x{background:none;border:none;color:var(--ink-4);cursor:pointer;font-size:18px;line-height:1;}
+.modal-body{padding:22px;display:flex;flex-direction:column;gap:16px;}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;}
+
+/* ── DIVIDERS ────────────────────────────────────────────────────── */
+.div-showcase{display:flex;flex-direction:column;gap:28px;}
+.div-lbl{font-size:11px;color:var(--ink-4);margin-bottom:6px;font-family:var(--mono);}
+.d-solid{border:none;border-top:1px solid var(--line);}
+.d-soft{border:none;border-top:1px solid var(--line-soft);}
+.d-dashed{border:none;border-top:1px dashed var(--line);}
+.d-heavy{border:none;border-top:2px solid var(--ink);}
+.d-gold{border:none;border-top:1px solid var(--gold);}
+.d-label{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--ink-4);}
+.d-label::before,.d-label::after{content:'';flex:1;height:1px;background:var(--line);}
+
+/* ── DATA VIZ ────────────────────────────────────────────────────── */
+.viz-bar{display:flex;border-radius:10px;overflow:hidden;height:44px;margin-bottom:12px;}
+.viz-seg{flex:1;}
+.viz-row{display:flex;justify-content:space-between;}
+.viz-lbl{font-size:10px;color:var(--ink-4);font-family:var(--mono);}
+.sparkline-cards{display:flex;gap:16px;flex-wrap:wrap;}
+.spark-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+.sp-label{font-size:11px;font-weight:500;color:var(--ink-4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.sp-val{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1;margin-bottom:8px;}
+
+/* ── SCROLLSPY HIGHLIGHT ─────────────────────────────────────────── */
+</style>
 </head>
 <body>
-  <div class="page">
-    <header class="intro">
-      <div class="intro-left">
-        <div class="mark"></div>
-        <div>
-          <div class="eyebrow">RedBird Workforce Streamline</div>
-          <h1>RedBird Design System</h1>
-          <p>Foundations, components, and patterns for the RedBird internal product. This follows the same calm, clean system-document style as the Tarali reference while preserving RedBird's existing UI language.</p>
+<div class="shell">
+
+<!-- STICKY SIDEBAR ──────────────────────────────────────────────── -->
+<nav class="sidenav" id="sidenav">
+  <div class="sn-brand">
+    <div class="sn-mark"><span>TH</span></div>
+    <div class="sn-name">Trade Harmonizer</div>
+    <div class="sn-ver">Design System · v1.0</div>
+  </div>
+  <div class="sn-group">
+    <div class="sn-label">Foundations</div>
+    <button class="sn-link" onclick="goTo('colors')">Colors</button>
+    <button class="sn-link" onclick="goTo('typography')">Typography</button>
+    <button class="sn-link" onclick="goTo('spacing')">Spacing</button>
+    <button class="sn-link" onclick="goTo('radius')">Border Radius</button>
+    <button class="sn-link" onclick="goTo('grid')">Grid</button>
+    <button class="sn-link" onclick="goTo('icons')">Icons</button>
+  </div>
+  <div class="sn-group">
+    <div class="sn-label">Components</div>
+    <button class="sn-link" onclick="goTo('buttons')">Buttons</button>
+    <button class="sn-link" onclick="goTo('forms')">Forms</button>
+    <button class="sn-link" onclick="goTo('badges')">Badges & Tags</button>
+    <button class="sn-link" onclick="goTo('alerts')">Alerts & Toasts</button>
+    <button class="sn-link" onclick="goTo('cards')">Cards & Stats</button>
+    <button class="sn-link" onclick="goTo('table')">Tables</button>
+    <button class="sn-link" onclick="goTo('navigation')">Navigation</button>
+    <button class="sn-link" onclick="goTo('modal')">Modals</button>
+    <button class="sn-link" onclick="goTo('dividers')">Dividers</button>
+    <button class="sn-link" onclick="goTo('dataviz')">Data Viz</button>
+  </div>
+</nav>
+
+<!-- SCROLLABLE CANVAS ───────────────────────────────────────────── -->
+<main class="canvas">
+
+  <!-- COVER ─────────────────────────────────────────────────────── -->
+  <div class="cover">
+    <div class="cover-ey">Design System</div>
+    <div class="cover-h">Trade Harmonizer</div>
+    <div class="cover-p">A minimal, precise design language built for trade finance professionals. Every token, every component, every spacing decision carries the weight of clarity.</div>
+    <div class="cover-pills">
+      <span class="cover-pill">Colors</span><span class="cover-pill">Typography</span>
+      <span class="cover-pill">Spacing</span><span class="cover-pill">Radius</span>
+      <span class="cover-pill">Grid</span><span class="cover-pill">Icons</span>
+      <span class="cover-pill">Buttons</span><span class="cover-pill">Forms</span>
+      <span class="cover-pill">Badges</span><span class="cover-pill">Alerts</span>
+      <span class="cover-pill">Cards</span><span class="cover-pill">Tables</span>
+      <span class="cover-pill">Navigation</span><span class="cover-pill">Modals</span>
+      <span class="cover-pill">Data Viz</span>
+    </div>
+    <div class="cover-meta">
+      <div><div class="cm-label">Version</div><div class="cm-val">1.0.0</div></div>
+      <div><div class="cm-label">Typeface</div><div class="cm-val">DM Serif + DM Sans</div></div>
+      <div><div class="cm-label">Base Unit</div><div class="cm-val">4px</div></div>
+      <div><div class="cm-label">Platform</div><div class="cm-val">SaaS · Internal</div></div>
+    </div>
+  </div>
+
+  <!-- ① COLORS ──────────────────────────────────────────────────── -->
+  <div class="sec" id="colors">
+    <div class="sec-ey">01 · Foundations</div>
+    <h2 class="sec-h">Colors</h2>
+    <p class="sec-p">All color decisions live as tokens. Ink anchors neutrals. Gold anchors brand. Semantic colors carry consistent meaning across every surface.</p>
+
+    <div class="tok"><span class="tok-name">Brand</span><div class="tok-rule"></div></div>
+    <div class="swatch-row">
+      <div class="sw"><div class="sw-chip" style="background:#C9A84C;"></div><div class="sw-name">Gold</div><div class="sw-hex">#C9A84C</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F5EDD6;"></div><div class="sw-name">Gold Pale</div><div class="sw-hex">#F5EDD6</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#9C7A2A;"></div><div class="sw-name">Gold Deep</div><div class="sw-hex">#9C7A2A</div></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Ink — Neutral</span><div class="tok-rule"></div></div>
+    <div class="swatch-row">
+      <div class="sw"><div class="sw-chip" style="background:#0D0F12;border:none;"></div><div class="sw-name">Ink</div><div class="sw-hex">#0D0F12</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#2A2D35;"></div><div class="sw-name">Ink 2</div><div class="sw-hex">#2A2D35</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#4B5060;"></div><div class="sw-name">Ink 3</div><div class="sw-hex">#4B5060</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#8B909E;"></div><div class="sw-name">Ink 4</div><div class="sw-hex">#8B909E</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C2C5CE;"></div><div class="sw-name">Ink 5</div><div class="sw-hex">#C2C5CE</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#E8E9EC;"></div><div class="sw-name">Line</div><div class="sw-hex">#E8E9EC</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F2F3F5;"></div><div class="sw-name">Line Soft</div><div class="sw-hex">#F2F3F5</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F8F8FA;"></div><div class="sw-name">Surface</div><div class="sw-hex">#F8F8FA</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FFFFFF;"></div><div class="sw-name">White</div><div class="sw-hex">#FFFFFF</div></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Semantic</span><div class="tok-rule"></div></div>
+    <div class="swatch-row">
+      <div class="sw"><div class="sw-chip" style="background:#1A7A6E;border:none;"></div><div class="sw-name">Teal</div><div class="sw-hex">#1A7A6E</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#D4F0EC;"></div><div class="sw-name">Teal Pale</div><div class="sw-hex">#D4F0EC</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C84B4B;border:none;"></div><div class="sw-name">Rose</div><div class="sw-hex">#C84B4B</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FAE0E0;"></div><div class="sw-name">Rose Pale</div><div class="sw-hex">#FAE0E0</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C97B1A;border:none;"></div><div class="sw-name">Amber</div><div class="sw-hex">#C97B1A</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FDF0D5;"></div><div class="sw-name">Amber Pale</div><div class="sw-hex">#FDF0D5</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#2A5FC8;border:none;"></div><div class="sw-name">Blue</div><div class="sw-hex">#2A5FC8</div></div>
+      <div class="sw"><div class="sw-chip" style="background:#D8E4FA;"></div><div class="sw-name">Blue Pale</div><div class="sw-hex">#D8E4FA</div></div>
+    </div>
+  </div>
+
+  <!-- ② TYPOGRAPHY ──────────────────────────────────────────────── -->
+  <div class="sec" id="typography">
+    <div class="sec-ey">02 · Foundations</div>
+    <h2 class="sec-h">Typography</h2>
+    <p class="sec-p">Two families. DM Serif Display for brand presence and data emphasis. DM Sans for interface legibility. DM Mono for trade references and values.</p>
+
+    <div class="tok"><span class="tok-name">DM Serif Display</span><div class="tok-rule"></div></div>
+    <div class="type-tbl" style="margin-bottom:40px;">
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Display</div><div class="tr-spec">48px / 1.1</div></div><div class="tr-sample" style="font-family:var(--serif);font-size:42px;line-height:1.1;">Trade Harmonizer</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">H1</div><div class="tr-spec">32px / 1.2</div></div><div class="tr-sample" style="font-family:var(--serif);font-size:32px;line-height:1.2;">Market Overview</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">H2</div><div class="tr-spec">24px / 1.3</div></div><div class="tr-sample" style="font-family:var(--serif);font-size:24px;line-height:1.3;">Trade Finance</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Stat — Italic</div><div class="tr-spec">36px / italic</div></div><div class="tr-sample" style="font-family:var(--serif);font-size:34px;font-style:italic;color:var(--gold);">$4,291,800</div></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">DM Sans — Interface</span><div class="tok-rule"></div></div>
+    <div class="type-tbl" style="margin-bottom:40px;">
+      <div class="tr"><div class="tr-meta"><div class="tr-label">H3 / 500</div><div class="tr-spec">18px / 1.4 / 500</div></div><div class="tr-sample" style="font-size:18px;font-weight:500;">Section Heading</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">H4 / 500</div><div class="tr-spec">15px / 1.5 / 500</div></div><div class="tr-sample" style="font-size:15px;font-weight:500;">Subsection Label</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Body / 400</div><div class="tr-spec">14px / 1.7 / 400</div></div><div class="tr-sample" style="font-size:14px;color:var(--ink-2);">Body text used across paragraphs, descriptions, and general interface copy.</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Small / 300</div><div class="tr-spec">12px / 1.6 / 300</div></div><div class="tr-sample" style="font-size:12px;font-weight:300;color:var(--ink-3);">Secondary info, captions, helper text and metadata.</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Label / 500 UC</div><div class="tr-spec">11px / 500 / uppercase</div></div><div class="tr-sample" style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);">Field Label · Category · Tag</div></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">DM Mono — Data</span><div class="tok-rule"></div></div>
+    <div class="type-tbl">
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Mono / 400</div><div class="tr-spec">13px / 1.6</div></div><div class="tr-sample" style="font-family:var(--mono);font-size:13px;">TXN-2024-000892 · USD 14,200.00</div></div>
+      <div class="tr"><div class="tr-meta"><div class="tr-label">Mono SM / 500</div><div class="tr-spec">11px / 500</div></div><div class="tr-sample" style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink-4);">CREATED_AT · TRADE_ID · AMOUNT</div></div>
+    </div>
+  </div>
+
+  <!-- ③ SPACING ──────────────────────────────────────────────────── -->
+  <div class="sec" id="spacing">
+    <div class="sec-ey">03 · Foundations</div>
+    <h2 class="sec-h">Spacing</h2>
+    <p class="sec-p">Built on a 4px base unit. Every padding, margin, and gap value is a named multiple. Never use arbitrary pixel values.</p>
+    <div class="sp-grid">
+      <div class="sp-row"><span class="sp-tok">space-1</span><span class="sp-px">4px</span><div class="sp-vis"><div class="sp-bar" style="width:4px;"></div><span class="sp-desc">Icon gap, micro spacing</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-2</span><span class="sp-px">8px</span><div class="sp-vis"><div class="sp-bar" style="width:8px;"></div><span class="sp-desc">Badge padding, inline gap</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-3</span><span class="sp-px">12px</span><div class="sp-vis"><div class="sp-bar" style="width:12px;"></div><span class="sp-desc">Button padding, list gap</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-4</span><span class="sp-px">16px</span><div class="sp-vis"><div class="sp-bar" style="width:16px;"></div><span class="sp-desc">Card padding, table cell</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-5</span><span class="sp-px">20px</span><div class="sp-vis"><div class="sp-bar" style="width:20px;"></div><span class="sp-desc">Component padding</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-6</span><span class="sp-px">24px</span><div class="sp-vis"><div class="sp-bar" style="width:24px;"></div><span class="sp-desc">Card padding, section gap</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-8</span><span class="sp-px">32px</span><div class="sp-vis"><div class="sp-bar" style="width:32px;"></div><span class="sp-desc">Between components</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-10</span><span class="sp-px">40px</span><div class="sp-vis"><div class="sp-bar" style="width:40px;"></div><span class="sp-desc">Panel, section top</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-12</span><span class="sp-px">48px</span><div class="sp-vis"><div class="sp-bar" style="width:48px;"></div><span class="sp-desc">Major section spacing</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-16</span><span class="sp-px">64px</span><div class="sp-vis"><div class="sp-bar" style="width:64px;"></div><span class="sp-desc">Page section margin</span></div></div>
+      <div class="sp-row"><span class="sp-tok">space-20</span><span class="sp-px">80px</span><div class="sp-vis"><div class="sp-bar" style="width:80px;"></div><span class="sp-desc">Top-level page rhythm</span></div></div>
+    </div>
+  </div>
+
+  <!-- ④ RADIUS ───────────────────────────────────────────────────── -->
+  <div class="sec" id="radius">
+    <div class="sec-ey">04 · Foundations</div>
+    <h2 class="sec-h">Border Radius</h2>
+    <p class="sec-p">Five levels. Sharp by default — precision over softness. Rounding is reserved for containers and status indicators.</p>
+    <div class="radius-row">
+      <div class="rad-item"><div class="rad-box" style="border-radius:3px;"></div><div class="rad-name">XS</div><div class="rad-val">3px — Tags, rows</div></div>
+      <div class="rad-item"><div class="rad-box" style="border-radius:5px;"></div><div class="rad-name">SM</div><div class="rad-val">5px — Buttons, inputs</div></div>
+      <div class="rad-item"><div class="rad-box" style="border-radius:8px;"></div><div class="rad-name">MD</div><div class="rad-val">8px — Alerts, tooltips</div></div>
+      <div class="rad-item"><div class="rad-box" style="border-radius:12px;"></div><div class="rad-name">LG</div><div class="rad-val">12px — Cards, panels</div></div>
+      <div class="rad-item"><div class="rad-box" style="border-radius:100px;width:80px;"></div><div class="rad-name">Pill</div><div class="rad-val">100px — Badges</div></div>
+    </div>
+  </div>
+
+  <!-- ⑤ GRID ─────────────────────────────────────────────────────── -->
+  <div class="sec" id="grid">
+    <div class="sec-ey">05 · Foundations</div>
+    <h2 class="sec-h">Grid System</h2>
+    <p class="sec-p">12-column grid with 24px gutters. Column spans scale from the same base — never mix arbitrary widths.</p>
+    <div class="tok"><span class="tok-name">12 Columns</span><div class="tok-rule"></div></div>
+    <div class="grid12" style="margin-bottom:24px;">
+      <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+      <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+      <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+    </div>
+    <div class="tok"><span class="tok-name">Common Spans</span><div class="tok-rule"></div></div>
+    <div class="gspan-row"><div class="gblock" style="grid-column:span 12;">12 col — full width</div></div>
+    <div class="gspan-row"><div class="gblock" style="grid-column:span 8;">8 col</div><div class="gblock" style="grid-column:span 4;">4 col</div></div>
+    <div class="gspan-row"><div class="gblock" style="grid-column:span 6;">6</div><div class="gblock" style="grid-column:span 6;">6</div></div>
+    <div class="gspan-row"><div class="gblock" style="grid-column:span 4;">4</div><div class="gblock" style="grid-column:span 4;">4</div><div class="gblock" style="grid-column:span 4;">4</div></div>
+    <div class="gspan-row"><div class="gblock" style="grid-column:span 3;">3</div><div class="gblock" style="grid-column:span 3;">3</div><div class="gblock" style="grid-column:span 3;">3</div><div class="gblock" style="grid-column:span 3;">3</div></div>
+  </div>
+
+  <!-- ⑥ ICONS ────────────────────────────────────────────────────── -->
+  <div class="sec" id="icons">
+    <div class="sec-ey">06 · Foundations</div>
+    <h2 class="sec-h">Icons</h2>
+    <p class="sec-p">16×16 base grid. Stroke-based at 1.5px weight. Each icon carries semantic meaning — never decorative.</p>
+    <div class="icon-grid">
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg><span class="ic-lbl">add</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 4.5"/></svg><span class="ic-lbl">check</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg><span class="ic-lbl">close</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2 1.5"/></svg><span class="ic-lbl">clock</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4"/><path d="M10.5 10.5l3 3"/></svg><span class="ic-lbl">search</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4h12M4 8h8M6 12h4"/></svg><span class="ic-lbl">filter</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 10l3 3 3-3M8 13V3"/></svg><span class="ic-lbl">download</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 3l5 5-5 5M3 8h10"/></svg><span class="ic-lbl">arrow-r</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="10" height="9" rx="1.5"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg><span class="ic-lbl">delete</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zM8 6v2.5M8 10.5v.5"/></svg><span class="ic-lbl">info</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v3M8 11v3M2 8h3M11 8h3"/><circle cx="8" cy="8" r="2"/></svg><span class="ic-lbl">settings</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 12l3-5 3 3 2-3 4 5"/></svg><span class="ic-lbl">chart</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h12M2 8h12M2 13h8"/></svg><span class="ic-lbl">list</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg><span class="ic-lbl">grid</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg><span class="ic-lbl">user</span></div>
+      <div class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M13 5l-5 5-5-5"/></svg><span class="ic-lbl">chevron-d</span></div>
+    </div>
+  </div>
+
+  <!-- ⑦ BUTTONS ──────────────────────────────────────────────────── -->
+  <div class="sec" id="buttons">
+    <div class="sec-ey">07 · Components</div>
+    <h2 class="sec-h">Buttons</h2>
+    <p class="sec-p">Actions are clear and unambiguous. One primary action per view. Ghost and outline recede gracefully.</p>
+
+    <div class="tok"><span class="tok-name">Variants</span><div class="tok-rule"></div></div>
+    <div class="btn-row" style="margin-bottom:32px;">
+      <button class="btn b-primary">Primary</button>
+      <button class="btn b-gold">Gold Brand</button>
+      <button class="btn b-outline">Outline</button>
+      <button class="btn b-ghost">Ghost</button>
+      <button class="btn b-danger">Danger</button>
+      <button class="btn b-disabled" disabled>Disabled</button>
+    </div>
+
+    <div class="tok"><span class="tok-name">Sizes</span><div class="tok-rule"></div></div>
+    <div class="btn-row" style="margin-bottom:32px;align-items:center;">
+      <button class="btn b-primary btn-lg">Large — 46px</button>
+      <button class="btn b-primary">Default — 38px</button>
+      <button class="btn b-primary btn-sm">Small — 30px</button>
+    </div>
+
+    <div class="tok"><span class="tok-name">With Icons</span><div class="tok-rule"></div></div>
+    <div class="btn-row">
+      <button class="btn b-primary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 10l3 3 3-3M8 13V3"/></svg>Export Report
+      </button>
+      <button class="btn b-outline">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg>New Trade
+      </button>
+      <button class="btn b-ghost">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4"/><path d="M10.5 10.5l3 3"/></svg>Search
+      </button>
+      <button class="btn b-outline btn-icon btn-sm">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4h12M4 8h8M6 12h4"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ⑧ FORMS ────────────────────────────────────────────────────── -->
+  <div class="sec" id="forms">
+    <div class="sec-ey">08 · Components</div>
+    <h2 class="sec-h">Forms</h2>
+    <p class="sec-p">Inputs are quiet. Labels always visible. States communicated through border changes alone.</p>
+
+    <div class="tok"><span class="tok-name">Input States</span><div class="tok-rule"></div></div>
+    <div class="form-grid" style="margin-bottom:32px;">
+      <div class="fg"><label class="fl">Default</label><input class="fi" placeholder="e.g. Trade reference number"/><span class="fh">Primary data entry</span></div>
+      <div class="fg"><label class="fl">Focus</label><input class="fi" style="border-color:var(--ink);box-shadow:0 0 0 3px rgba(13,15,18,.07);" placeholder="Active input state"/></div>
+      <div class="fg"><label class="fl">Error</label><input class="fi f-err" value="Invalid value"/><span class="fe">This field contains an error</span></div>
+      <div class="fg"><label class="fl">Success</label><input class="fi f-ok" value="TRD-2024-00821"/></div>
+      <div class="fg"><label class="fl">Disabled</label><input class="fi" disabled value="Read-only value"/></div>
+      <div class="fg"><label class="fl">Select</label><select class="fsel"><option>Select counterparty...</option><option>HSBC Trade Finance</option><option>JP Morgan</option></select></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Textarea</span><div class="tok-rule"></div></div>
+    <div class="fg" style="max-width:480px;margin-bottom:32px;">
+      <label class="fl">Trade Notes</label>
+      <textarea class="fta" placeholder="Add relevant notes or conditions for this trade..."></textarea>
+      <span class="fh">Visible to all counterparties</span>
+    </div>
+
+    <div class="tok"><span class="tok-name">Checkbox & Toggle</span><div class="tok-rule"></div></div>
+    <div class="cb-row"><div class="cb-box"></div><span class="cb-lbl">Auto-confirm on approval</span></div>
+    <div class="cb-row"><div class="cb-box on"></div><span class="cb-lbl">Notify counterparty by email</span></div>
+    <div class="cb-row"><div class="cb-box" style="border-color:var(--line);background:var(--line-soft);"></div><span class="cb-lbl" style="color:var(--ink-5);">Disabled option</span></div>
+    <hr class="sub-rule" style="margin:20px 0;"/>
+    <div class="tog-row"><div class="tog"></div><span class="tog-lbl">Enable auto-matching</span></div>
+    <div class="tog-row"><div class="tog on"></div><span class="tog-lbl">Real-time notifications</span></div>
+  </div>
+
+  <!-- ⑨ BADGES ───────────────────────────────────────────────────── -->
+  <div class="sec" id="badges">
+    <div class="sec-ey">09 · Components</div>
+    <h2 class="sec-h">Badges & Tags</h2>
+    <p class="sec-p">Status badges communicate state at a glance. Pills for statuses. Mono tags for system references.</p>
+
+    <div class="tok"><span class="tok-name">Status Badges</span><div class="tok-rule"></div></div>
+    <div class="badge-row" style="margin-bottom:32px;">
+      <span class="bdg b-active"><span class="bdg-dot"></span>Active</span>
+      <span class="bdg b-default"><span class="bdg-dot"></span>Draft</span>
+      <span class="bdg b-pending"><span class="bdg-dot"></span>Pending</span>
+      <span class="bdg b-error"><span class="bdg-dot"></span>Rejected</span>
+      <span class="bdg b-gold-bdg"><span class="bdg-dot"></span>Matched</span>
+      <span class="bdg b-info"><span class="bdg-dot"></span>Under Review</span>
+      <span class="bdg b-outline-bdg">Archived</span>
+      <span class="bdg b-solid">New</span>
+    </div>
+
+    <div class="tok"><span class="tok-name">System Tags</span><div class="tok-rule"></div></div>
+    <div class="badge-row">
+      <span class="tag">LC · Letter of Credit</span>
+      <span class="tag">SBLC</span>
+      <span class="tag">USD</span>
+      <span class="tag">TRD-2024-00821</span>
+      <span class="tag">Q3 2024</span>
+      <span class="tag">SWIFT</span>
+      <span class="tag">Export Finance</span>
+      <span class="tag">C88</span>
+    </div>
+  </div>
+
+  <!-- ⑩ ALERTS ───────────────────────────────────────────────────── -->
+  <div class="sec" id="alerts">
+    <div class="sec-ey">10 · Components</div>
+    <h2 class="sec-h">Alerts & Toasts</h2>
+    <p class="sec-p">Feedback is honest and immediate. Inline alerts anchor to content. Toasts are transient — dark, minimal, fleeting.</p>
+
+    <div class="tok"><span class="tok-name">Inline Alerts</span><div class="tok-rule"></div></div>
+    <div style="margin-bottom:32px;">
+      <div class="alert al-success"><div class="al-icon" style="background:var(--teal);color:#fff;">✓</div><div class="al-body"><div class="al-title">Trade confirmed</div><div class="al-msg">TRD-2024-00821 has been matched and confirmed with counterparty.</div></div><button class="al-close">✕</button></div>
+      <div class="alert al-error"><div class="al-icon" style="background:var(--rose);color:#fff;">!</div><div class="al-body"><div class="al-title">Validation failed</div><div class="al-msg">The IBAN does not match the expected format for this currency.</div></div><button class="al-close">✕</button></div>
+      <div class="alert al-warning"><div class="al-icon" style="background:var(--amber);color:#fff;">!</div><div class="al-body"><div class="al-title">Review required</div><div class="al-msg">This trade exceeds your standard limit. Compliance approval pending.</div></div><button class="al-close">✕</button></div>
+      <div class="alert al-info"><div class="al-icon" style="background:var(--blue);color:#fff;">i</div><div class="al-body"><div class="al-title">Rate updated</div><div class="al-msg">FX rates have been refreshed. Settlement amounts may differ slightly.</div></div><button class="al-close">✕</button></div>
+      <div class="alert al-gold"><div class="al-icon" style="background:var(--gold);color:#fff;">★</div><div class="al-body"><div class="al-title">Matched opportunity</div><div class="al-msg">A new counterparty match was found for your open trade request.</div></div><button class="al-close">✕</button></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Toast Notifications</span><div class="tok-rule"></div></div>
+    <div class="toast t-success"><div class="t-text"><div class="t-label">Success</div><div class="t-msg">Trade submitted successfully.</div></div><span style="color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;">✕</span></div>
+    <div class="toast t-error"><div class="t-text"><div class="t-label">Error</div><div class="t-msg">Connection lost. Retrying...</div></div><span style="color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;">✕</span></div>
+    <div class="toast t-warning"><div class="t-text"><div class="t-label">Warning</div><div class="t-msg">Limit threshold approaching.</div></div><span style="color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;">✕</span></div>
+    <div class="toast t-info"><div class="t-text"><div class="t-label">Info</div><div class="t-msg">FX rates updated at 14:30 UTC.</div></div><span style="color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;">✕</span></div>
+  </div>
+
+  <!-- ⑪ CARDS ────────────────────────────────────────────────────── -->
+  <div class="sec" id="cards">
+    <div class="sec-ey">11 · Components</div>
+    <h2 class="sec-h">Cards & Stats</h2>
+    <p class="sec-p">Cards contain — they don't decorate. Stat tiles use the display typeface to give numbers the prominence they deserve.</p>
+
+    <div class="tok"><span class="tok-name">Metric Tiles</span><div class="tok-rule"></div></div>
+    <div class="cards-grid" style="margin-bottom:32px;">
+      <div class="stat-card"><div class="sc-label">Total Volume</div><div class="sc-val">$4.2B</div><div class="sc-delta d-up">↑ 12.4% vs last quarter</div></div>
+      <div class="stat-card"><div class="sc-label">Open Trades</div><div class="sc-val">1,284</div><div class="sc-delta d-dn">↓ 3 today</div></div>
+      <div class="stat-card"><div class="sc-label">Match Rate</div><div class="sc-val">94.7%</div><div class="sc-delta d-up">↑ 0.8pp this week</div></div>
+      <div class="stat-card"><div class="sc-label">Avg Settlement</div><div class="sc-val">3.2d</div><div class="sc-delta d-up">↑ Improved by 0.5d</div></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Content Cards</span><div class="tok-rule"></div></div>
+    <div class="content-cards">
+      <div class="ccard">
+        <div class="cc-title">Recent Activity</div>
+        <div class="cc-sub">Last 7 days</div>
+        <div class="cc-row"><div><div class="cc-rtitle">TRD-2024-00821</div><div class="cc-rsub">Letter of Credit · HSBC</div></div><span class="bdg b-active"><span class="bdg-dot"></span>Active</span></div>
+        <div class="cc-row"><div><div class="cc-rtitle">TRD-2024-00820</div><div class="cc-rsub">SBLC · JP Morgan</div></div><span class="bdg b-pending"><span class="bdg-dot"></span>Pending</span></div>
+        <div class="cc-row"><div><div class="cc-rtitle">TRD-2024-00819</div><div class="cc-rsub">Export Finance · Citi</div></div><span class="bdg b-gold-bdg"><span class="bdg-dot"></span>Matched</span></div>
+      </div>
+      <div class="ccard" style="background:var(--ink);border-color:var(--ink);">
+        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:16px;">Quick Actions</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="btn b-gold" style="width:100%;justify-content:flex-start;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg>New Trade Request</button>
+          <button class="btn b-outline" style="width:100%;justify-content:flex-start;border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.65);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 10l3 3 3-3M8 13V3"/></svg>Export Statement</button>
+          <button class="btn b-ghost" style="width:100%;justify-content:flex-start;color:rgba(255,255,255,.4);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4"/><path d="M10.5 10.5l3 3"/></svg>Search Counterparties</button>
         </div>
       </div>
-      <div class="version">v1.0</div>
-    </header>
-
-    <section class="section">
-      <div class="section-label">Foundations</div>
-      <div class="section-head"><h2>Color</h2><div class="section-rule"></div></div>
-      <div class="grid-3">
-        <article class="card"><h3>Brand</h3><div class="stack"><div class="swatch-row"><div class="swatch" style="background:#ec202b"></div><div class="meta"><strong>Primary</strong><span>#EC202B</span></div></div><div class="swatch-row"><div class="swatch" style="background:rgba(236,32,43,0.08)"></div><div class="meta"><strong>Primary Light</strong><span>rgba(236,32,43,0.08)</span></div></div><div class="swatch-row"><div class="swatch" style="background:#be123c"></div><div class="meta"><strong>Primary Hover</strong><span>#BE123C</span></div></div></div></article>
-        <article class="card"><h3>Neutrals</h3><div class="stack"><div class="swatch-row"><div class="swatch" style="background:#1d293d"></div><div class="meta"><strong>Ink Title</strong><span>#1D293D</span></div></div><div class="swatch-row"><div class="swatch" style="background:#62748e"></div><div class="meta"><strong>Ink Body</strong><span>#62748E</span></div></div><div class="swatch-row"><div class="swatch" style="background:#90a1b9"></div><div class="meta"><strong>Ink Muted</strong><span>#90A1B9</span></div></div><div class="swatch-row"><div class="swatch" style="background:#f8fafc"></div><div class="meta"><strong>Surface</strong><span>#F8FAFC</span></div></div></div></article>
-        <article class="card"><h3>Semantic</h3><div class="stack"><div class="swatch-row"><div class="swatch" style="background:#00bc7d"></div><div class="meta"><strong>Success</strong><span>#00BC7D</span></div></div><div class="swatch-row"><div class="swatch" style="background:#ff8904"></div><div class="meta"><strong>Warning</strong><span>#FF8904</span></div></div><div class="swatch-row"><div class="swatch" style="background:#ec202b"></div><div class="meta"><strong>Error</strong><span>#EC202B</span></div></div><div class="swatch-row"><div class="swatch" style="background:#00bcff"></div><div class="meta"><strong>Info</strong><span>#00BCFF</span></div></div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Foundations</div>
-      <div class="section-head"><h2>Typography</h2><div class="section-rule"></div></div>
-      <div class="grid-2">
-        <article class="card"><h3>Typefaces</h3><div class="stack"><div class="type-group"><small>Display</small><div class="display-xl">Find the Right Professional</div></div><div class="type-group"><small>Body Heading</small><div class="heading-md">Why People Choose RedBird</div></div></div></article>
-        <article class="card"><h3>Type Scale</h3><div class="stack"><div class="type-group"><small>Metric</small><div class="display-xl">89/100</div></div><div class="type-group"><small>Field Label</small><div class="label-sm">District / Region</div></div><div class="type-group"><small>Body</small><div class="body-md">Northern Operations</div></div><div class="type-group"><small>Helper</small><div class="body-sm">Filled vs required today</div></div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Foundations</div>
-      <div class="section-head"><h2>Spacing, Radius, Shadows</h2><div class="section-rule"></div></div>
-      <div class="grid-3">
-        <article class="card"><h3>Spacing</h3><div class="stack"><div class="token-row"><strong>4, 8, 12</strong><span>Dense UI spacing</span></div><div class="token-row"><strong>16, 24</strong><span>Card and section spacing</span></div><div class="token-row"><strong>32</strong><span>Large pattern spacing</span></div></div></article>
-        <article class="card"><h3>Radius</h3><div class="stack"><div class="token-row"><strong>8px</strong><span>Buttons and fields</span></div><div class="token-row"><strong>16px</strong><span>Cards and modals</span></div><div class="token-row"><strong>9999px</strong><span>Badges and tabs</span></div></div></article>
-        <article class="card"><h3>Shadows</h3><div class="stack"><div class="token-row"><strong>Card shadow</strong><span>Soft neutral layer</span></div><div class="token-row"><strong>Primary hover</strong><span>Brand-tinted action lift</span></div></div></article>
-      </div>
-    </section>
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Buttons</h2><div class="section-rule"></div></div>
-      <div class="card"><h3>Variants</h3><div class="demo-row"><a class="btn large" href="#">+ New Assignment</a><a class="btn large hover" href="#">+ New Assignment</a><a class="btn secondary" href="#">Cancel</a><a class="btn tonal" href="#">Export</a></div></div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Badges &amp; Status</h2><div class="section-rule"></div></div>
-      <div class="grid-2">
-        <article class="card"><h3>Status</h3><div class="pill-row"><div class="status success">Active</div><div class="status warning">Standby</div><div class="status danger">Inactive</div><div class="status info">Assigned</div></div></article>
-        <article class="card"><h3>Tags</h3><div class="pill-row"><div class="badge success">Synced</div><div class="badge warning">Pending</div><div class="badge danger">Blocked</div><div class="badge info">Draft</div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Form Inputs</h2><div class="section-rule"></div></div>
-      <div class="grid-3">
-        <article class="card"><h3>Default</h3><div class="field-shell"><label>Email</label><div class="field"><span>Enter your email</span></div><div class="helper">We'll match you with the right professional.</div></div></article>
-        <article class="card"><h3>Focused</h3><div class="field-shell"><label>Email</label><div class="field focus"><span>john@example.com</span></div></div></article>
-        <article class="card"><h3>Error</h3><div class="field-shell"><label>Email</label><div class="field error"><span>invalid-email</span></div><div class="helper error">Please enter a valid email address.</div></div></article>
-      </div>
-      <div style="height:18px"></div>
-      <div class="grid-3">
-        <article class="card"><h3>Success</h3><div class="field-shell"><label>Email</label><div class="field success"><span>john@redbird.com</span></div><div class="helper success">Email is available.</div></div></article>
-        <article class="card"><h3>Select</h3><div class="field-shell"><label>Role</label><div class="field"><span>Technician</span><span>▼</span></div></div></article>
-        <article class="card"><h3>Search</h3><div class="field-shell"><label>Search</label><div class="field"><span>Search sites, workers...</span><span>⌕</span></div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Toasts</h2><div class="section-rule"></div></div>
-      <div class="grid-3">
-        <article class="card"><h3>Success Toast</h3><div class="toast success"><div class="toast-dot"></div><div><strong>Site created</strong><p>Harbor Square is now available in planner.</p></div><div class="action">View</div></div></article>
-        <article class="card"><h3>Warning Toast</h3><div class="toast warning"><div class="toast-dot"></div><div><strong>Demand incomplete</strong><p>Two required roles are still missing before publish.</p></div><div class="action">Fix</div></div></article>
-        <article class="card"><h3>Error Toast</h3><div class="toast error"><div class="toast-dot"></div><div><strong>Sync failed</strong><p>Planner service did not respond. Try again in a minute.</p></div><div class="action">Retry</div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Navigation</h2><div class="section-rule"></div></div>
-      <div class="grid-2">
-        <article class="card"><h3>Tabs</h3><div class="pill-row"><div class="tab active">Workers</div><div class="tab">Rules</div><div class="tab">Gaps</div><div class="tab">History</div></div></article>
-        <article class="card"><h3>Utility Actions</h3><div class="demo-row"><a class="btn tonal" href="#">Filter</a><a class="btn secondary" href="#">Export</a><a class="btn" href="#">+ New Site</a></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Components</div>
-      <div class="section-head"><h2>Tables &amp; Data</h2><div class="section-rule"></div></div>
-      <div class="grid-2">
-        <article class="card"><h3>Workforce Table</h3><div class="table"><div class="table-head"><span>Role</span><span>Rotation</span><span>Demand</span><span>Status</span></div><div class="table-row"><span>Driller</span><span>2/2</span><span>02</span><span><span class="badge success">Ready</span></span></div><div class="table-row"><span>Technician</span><span>21/7</span><span>02</span><span><span class="badge info">Assigned</span></span></div><div class="table-row"><span>Cook</span><span>14/7</span><span>01</span><span><span class="badge warning">Pending</span></span></div></div></article>
-        <article class="card"><h3>Metric Cards</h3><div class="metrics"><div class="metric"><h4>Today's Coverage</h4><strong>89/100</strong><span>Peak Performance</span></div><div class="metric"><h4>Open Deficit</h4><strong>11</strong><span>Vacancies still uncovered</span></div><div class="metric"><h4>Fatigue Risk</h4><strong>5</strong><span>Approaching 21/28 limit</span></div><div class="metric"><h4>Active Sites</h4><strong>18</strong><span>3 need urgent staffing</span></div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Patterns</div>
-      <div class="section-head"><h2>Product Patterns</h2><div class="section-rule"></div></div>
-      <div class="grid-2">
-        <article class="pattern"><h3>Add New Site Modal</h3><div class="form-grid"><div class="field-shell"><label>Site Name</label><div class="field"><span>Harbor Square</span></div></div><div class="field-shell"><label>District / Region</label><div class="field"><span>Northern Operations</span></div></div><div class="field-shell"><label>Timezone</label><div class="field"><span>AEST (UTC+10)</span><span>▼</span></div></div><div class="field-shell"><label>Asset Type</label><div class="field"><span>Construction Site</span><span>▼</span></div></div></div><div class="pill-row"><div class="status success">Active</div><div class="status warning">Standby</div><div class="status danger">Inactive</div></div><div class="role-table"><div class="role-head"><span>Role</span><span>Rotation</span><span>Demand</span></div><div class="role-row"><span>Driller</span><span>2/2</span><span>02</span></div><div class="role-row"><span>Technician</span><span>21/7</span><span>02</span></div><div class="role-row"><span>Cook</span><span>14/7</span><span>01</span></div></div><div class="demo-row"><a class="btn secondary" href="#">Cancel</a><a class="btn" href="#">+ Add Site</a></div></article>
-        <article class="pattern"><h3>Dashboard Snapshot</h3><div class="metrics"><div class="metric"><h4>Today's Coverage</h4><strong>89/100</strong><span>Peak Performance</span></div><div class="metric"><h4>Open Deficit</h4><strong>11</strong><span>Vacancies still uncovered</span></div></div><div class="card" style="padding:16px"><h3 style="margin-bottom:10px">Coverage vs Deficit</h3><div class="pill-row"><div class="badge success">Coverage</div><div class="badge danger">Deficit</div></div><div class="bars"><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:82%"></div><div class="bar deficit" style="height:18%"></div></div><span>Mon</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:76%"></div><div class="bar deficit" style="height:24%"></div></div><span>Tue</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:88%"></div><div class="bar deficit" style="height:12%"></div></div><span>Wed</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:72%"></div><div class="bar deficit" style="height:28%"></div></div><span>Thu</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:86%"></div><div class="bar deficit" style="height:14%"></div></div><span>Fri</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:68%"></div><div class="bar deficit" style="height:32%"></div></div><span>Sat</span></div><div class="bar-col"><div class="bar-stack"><div class="bar coverage" style="height:80%"></div><div class="bar deficit" style="height:20%"></div></div><span>Sun</span></div></div></div></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-label">Reference</div>
-      <div class="section-head"><h2>CSS Variables Reference</h2><div class="section-rule"></div></div>
-      <div class="code"><pre>:root {
-  --rb-primary: #ec202b;
-  --rb-primary-hover: #be123c;
-  --rb-text: #1d293d;
-  --rb-text-secondary: #62748e;
-  --rb-text-muted: #90a1b9;
-  --rb-surface: #ffffff;
-  --rb-surface-soft: #f8fafc;
-  --rb-border: #e8edf3;
-  --rb-success: #00bc7d;
-  --rb-warning: #ff8904;
-  --rb-danger: #ec202b;
-  --rb-info: #00bcff;
-  --rb-radius-sm: 8px;
-  --rb-radius-md: 16px;
-  --rb-space-2: 8px;
-  --rb-space-3: 12px;
-  --rb-space-4: 16px;
-  --rb-space-5: 24px;
-}</pre></div>
-    </section>
+    </div>
   </div>
+
+  <!-- ⑫ TABLE ────────────────────────────────────────────────────── -->
+  <div class="sec" id="table">
+    <div class="sec-ey">12 · Components</div>
+    <h2 class="sec-h">Tables</h2>
+    <p class="sec-p">Data is the product. Dense but breathable — generous row padding, muted headers, a hover state that never shouts.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Trade ID</th><th>Counterparty</th><th>Type</th><th>Ccy</th><th>Amount</th><th>Status</th><th>Date</th><th></th></tr></thead>
+        <tbody>
+          <tr><td class="td-m">TRD-2024-00821</td><td class="td-p">HSBC Trade Finance</td><td>Letter of Credit</td><td class="td-m">USD</td><td class="td-p td-m">1,200,000.00</td><td><span class="bdg b-active"><span class="bdg-dot"></span>Active</span></td><td style="color:var(--ink-4);font-size:12px;">12 Dec 2024</td><td class="td-a">View</td></tr>
+          <tr><td class="td-m">TRD-2024-00820</td><td class="td-p">JP Morgan</td><td>SBLC</td><td class="td-m">EUR</td><td class="td-p td-m">540,000.00</td><td><span class="bdg b-pending"><span class="bdg-dot"></span>Pending</span></td><td style="color:var(--ink-4);font-size:12px;">11 Dec 2024</td><td class="td-a">View</td></tr>
+          <tr><td class="td-m">TRD-2024-00819</td><td class="td-p">Citibank N.A.</td><td>Export Finance</td><td class="td-m">GBP</td><td class="td-p td-m">880,000.00</td><td><span class="bdg b-gold-bdg"><span class="bdg-dot"></span>Matched</span></td><td style="color:var(--ink-4);font-size:12px;">10 Dec 2024</td><td class="td-a">View</td></tr>
+          <tr><td class="td-m">TRD-2024-00818</td><td class="td-p">Standard Chartered</td><td>Documentary Collection</td><td class="td-m">SGD</td><td class="td-p td-m">320,000.00</td><td><span class="bdg b-error"><span class="bdg-dot"></span>Rejected</span></td><td style="color:var(--ink-4);font-size:12px;">09 Dec 2024</td><td class="td-a">View</td></tr>
+          <tr><td class="td-m">TRD-2024-00817</td><td class="td-p">Deutsche Bank</td><td>Bank Guarantee</td><td class="td-m">CHF</td><td class="td-p td-m">2,100,000.00</td><td><span class="bdg b-info"><span class="bdg-dot"></span>Under Review</span></td><td style="color:var(--ink-4);font-size:12px;">08 Dec 2024</td><td class="td-a">View</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ⑬ NAVIGATION ───────────────────────────────────────────────── -->
+  <div class="sec" id="navigation">
+    <div class="sec-ey">13 · Components</div>
+    <h2 class="sec-h">Navigation</h2>
+    <p class="sec-p">Navigation is structural, not decorative. Dark topbar anchors the brand. Sidebar scales for dense, multi-module platforms.</p>
+
+    <div class="tok"><span class="tok-name">Top Navigation Bar</span><div class="tok-rule"></div></div>
+    <div class="nav-demo" style="margin-bottom:32px;">
+      <div class="topbar">
+        <div class="tb-brand">
+          <div class="tb-logo">TH</div>
+          <div class="tb-name">Trade Harmonizer</div>
+        </div>
+        <div class="tb-nav">
+          <div class="tb-link on">Dashboard</div>
+          <div class="tb-link">Trades</div>
+          <div class="tb-link">Counterparties</div>
+          <div class="tb-link">Reports</div>
+        </div>
+        <div class="tb-right">
+          <button class="btn b-gold btn-sm">New Trade</button>
+          <div class="avatar">AH</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Sidebar Navigation</span><div class="tok-rule"></div></div>
+    <div class="nav-demo">
+      <div class="sb-demo">
+        <div class="sb-inner">
+          <div class="sb-sect">Main</div>
+          <div class="sb-item on"><div class="sb-dot"></div>Dashboard</div>
+          <div class="sb-item"><div class="sb-dot"></div>Trades</div>
+          <div class="sb-item"><div class="sb-dot"></div>Matching</div>
+          <div class="sb-item"><div class="sb-dot"></div>Counterparties</div>
+          <div class="sb-sect">Reports</div>
+          <div class="sb-item"><div class="sb-dot"></div>Analytics</div>
+          <div class="sb-item"><div class="sb-dot"></div>Exports</div>
+        </div>
+        <div class="sb-content">
+          <div class="sb-ct">Dashboard</div>
+          <div class="sb-cs">Overview of your trade portfolio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑭ MODAL ────────────────────────────────────────────────────── -->
+  <div class="sec" id="modal">
+    <div class="sec-ey">14 · Components</div>
+    <h2 class="sec-h">Modals</h2>
+    <p class="sec-p">Modals interrupt intentionally. Every modal has a clear title and a primary action. Avoid nesting modals.</p>
+    <div class="modal-wrap">
+      <div class="modal">
+        <div class="modal-head"><div class="modal-title">New Trade Request</div><button class="modal-x">×</button></div>
+        <div class="modal-body">
+          <div class="fg"><label class="fl">Trade Type</label><select class="fsel" style="width:100%;"><option>Letter of Credit (LC)</option><option>SBLC</option><option>Export Finance</option></select></div>
+          <div class="fg"><label class="fl">Counterparty</label><input class="fi" style="width:100%;" placeholder="Search counterparty..."/></div>
+          <div class="modal-row">
+            <div class="fg"><label class="fl">Currency</label><select class="fsel" style="width:100%;"><option>USD</option><option>EUR</option><option>GBP</option></select></div>
+            <div class="fg"><label class="fl">Amount</label><input class="fi" style="width:100%;" placeholder="0.00"/></div>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn b-ghost btn-sm">Cancel</button>
+          <button class="btn b-primary btn-sm">Submit Trade</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑮ DIVIDERS ──────────────────────────────────────────────────── -->
+  <div class="sec" id="dividers">
+    <div class="sec-ey">15 · Components</div>
+    <h2 class="sec-h">Dividers</h2>
+    <p class="sec-p">Dividers create breathing room. Solid for hard breaks, soft for grouping, gold for featured zones, labeled for named areas.</p>
+    <div class="div-showcase">
+      <div><div class="div-lbl">Solid — default section break</div><hr class="d-solid"/></div>
+      <div><div class="div-lbl">Soft — within-section grouping</div><hr class="d-soft"/></div>
+      <div><div class="div-lbl">Dashed — draft or optional</div><hr class="d-dashed"/></div>
+      <div><div class="div-lbl">Heavy — major page break</div><hr class="d-heavy"/></div>
+      <div><div class="div-lbl">Gold — brand or featured section</div><hr class="d-gold"/></div>
+      <div><div class="div-lbl">Labeled — named zone</div><div class="d-label">or continue with</div></div>
+      <div><div class="div-lbl">Token row — section header + rule</div><div class="tok" style="margin-bottom:0;"><span class="tok-name">Trade History</span><div class="tok-rule"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ⑯ DATA VIZ ──────────────────────────────────────────────────── -->
+  <div class="sec" id="dataviz">
+    <div class="sec-ey">16 · Components</div>
+    <h2 class="sec-h">Data Visualization</h2>
+    <p class="sec-p">Chart colors are never random. Gold for primary metrics, teal for positive, rose for negative. Neutral tones for reference data. Seven colors maximum per chart.</p>
+
+    <div class="tok"><span class="tok-name">Sequential Palette — Gold</span><div class="tok-rule"></div></div>
+    <div style="margin-bottom:32px;">
+      <div class="viz-bar">
+        <div class="viz-seg" style="background:#F5EDD6;"></div>
+        <div class="viz-seg" style="background:#E8D4A0;"></div>
+        <div class="viz-seg" style="background:#D9BC74;"></div>
+        <div class="viz-seg" style="background:#C9A84C;"></div>
+        <div class="viz-seg" style="background:#B89038;"></div>
+        <div class="viz-seg" style="background:#9C7A2A;"></div>
+        <div class="viz-seg" style="background:#7A5E1E;"></div>
+      </div>
+      <div class="viz-row"><span class="viz-lbl">#F5EDD6 — lightest</span><span class="viz-lbl">#C9A84C — base</span><span class="viz-lbl">#7A5E1E — darkest</span></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Categorical Palette — 7 max</span><div class="tok-rule"></div></div>
+    <div style="margin-bottom:32px;">
+      <div class="viz-bar">
+        <div class="viz-seg" style="background:#C9A84C;"></div>
+        <div class="viz-seg" style="background:#1A7A6E;"></div>
+        <div class="viz-seg" style="background:#2A5FC8;"></div>
+        <div class="viz-seg" style="background:#C84B4B;"></div>
+        <div class="viz-seg" style="background:#C97B1A;"></div>
+        <div class="viz-seg" style="background:#6A4CC8;"></div>
+        <div class="viz-seg" style="background:#8B909E;"></div>
+      </div>
+      <div class="viz-row"><span class="viz-lbl">Gold · Teal · Blue · Rose · Amber · Violet · Neutral</span><span class="viz-lbl">max 7</span></div>
+    </div>
+
+    <div class="tok"><span class="tok-name">Sparklines in Context</span><div class="tok-rule"></div></div>
+    <div class="sparkline-cards">
+      <div class="spark-card">
+        <div class="sp-label">Volume Trend</div>
+        <div class="sp-val">$4.2B</div>
+        <svg viewBox="0 0 120 32" width="120" height="32" style="display:block;margin-bottom:6px;">
+          <polyline points="0,28 15,22 30,24 45,16 60,18 75,10 90,12 105,6 120,4" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="sc-delta d-up" style="font-size:11px;">↑ 12.4% this quarter</div>
+      </div>
+      <div class="spark-card">
+        <div class="sp-label">Rejections</div>
+        <div class="sp-val">48</div>
+        <svg viewBox="0 0 120 32" width="120" height="32" style="display:block;margin-bottom:6px;">
+          <polyline points="0,6 15,10 30,8 45,14 60,12 75,18 90,16 105,22 120,26" fill="none" stroke="#C84B4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="sc-delta d-dn" style="font-size:11px;">↓ increasing trend</div>
+      </div>
+      <div class="spark-card">
+        <div class="sp-label">Match Rate</div>
+        <div class="sp-val">94.7%</div>
+        <svg viewBox="0 0 120 32" width="120" height="32" style="display:block;margin-bottom:6px;">
+          <polyline points="0,20 15,18 30,16 45,18 60,14 75,12 90,10 105,8 120,6" fill="none" stroke="#1A7A6E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="sc-delta d-up" style="font-size:11px;">↑ 0.8pp this week</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<script>
+function goTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Scrollspy
+const sections = ['colors','typography','spacing','radius','grid','icons',
+  'buttons','forms','badges','alerts','cards','table','navigation','modal','dividers','dataviz'];
+
+const links = {};
+sections.forEach(id => {
+  const btn = document.querySelector(`[onclick="goTo('${id}')"]`);
+  if (btn) links[id] = btn;
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.sn-link').forEach(l => l.classList.remove('lit'));
+      const btn = links[e.target.id];
+      if (btn) btn.classList.add('lit');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+// Toggles
+document.querySelectorAll('.tog').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+</script>
 </body>
 </html>
